@@ -1,18 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 import logo from "@/assets/logo.png";
 
 const NavBar = () => {
   const links = (
     <>
-      <Link href="/Work-out">Workouts</Link>
-      <Link href="/My-plans">My Plans</Link>
+      <Link href="/">Workouts</Link>
+      <Link href="/My-plan">My Plans</Link>
     </>
   );
   return (
-    <div>
-      <div className="navbar bg-base-100 shadow-sm container mx-auto">
+    <div className="container mx-auto ">
+      <div className="navbar bg-base-100 shadow-sm ">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -48,9 +47,20 @@ const NavBar = () => {
         <div className="navbar-center hidden lg:flex ">
           <ul className="menu menu-horizontal px-1 gap-3">{links}</ul>
         </div>
-        <div className="navbar-end">
-          <Link href={"/Work-out"} className="btn">Plan</Link>
-          <Link href={"/Work-out"} className="btn">Saved</Link>
+        <div className="navbar-end gap-5">
+          <Link href="/My-plan" >
+            <div className="flex items-center gap-2">
+              <div>Plan</div>
+              <div className="rounded-full border border-white px-2">0</div>
+            </div>
+          </Link>
+
+             <Link href="/My-plan" >
+            <div className="flex items-center gap-2">
+              <div>Saved</div>
+              <div className="rounded-full border border-white px-2">0</div>
+            </div>
+          </Link>
         </div>
       </div>
     </div>
