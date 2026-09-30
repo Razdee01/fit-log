@@ -10,7 +10,7 @@ const Footer = () => {
 
         {/* Logo */}
         <div className="flex items-center gap-2">
-          {/* <span className="text-xl font-black text-lime-400">⚡</span> */}
+        
           <Link href="/" className="btn btn-ghost text-xl">
             <Image src={logo} alt="logo" />
             <p>FITLOG</p>
