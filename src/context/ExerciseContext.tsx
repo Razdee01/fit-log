@@ -2,7 +2,7 @@
 import React, {createContext, ReactNode, useState } from 'react';
 
 
-export const exerciseContext=createContext({})
+export const exerciseContext=createContext({});
 
 
 

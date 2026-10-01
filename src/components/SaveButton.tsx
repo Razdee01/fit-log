@@ -2,6 +2,7 @@
 import { exerciseContext } from "@/context/ExerciseContext";
 import { IExercise } from "@/types/Type";
 import React, { useContext } from "react";
+import { toast } from "react-toastify";
 interface IsaveProps {
   exercise: IExercise;
 }
@@ -11,6 +12,7 @@ const SaveButton = ({ exercise }: IsaveProps) => {
     const handleSave=()=>{
       setSave([...save,exercise])
         console.log("save btton clck");
+         toast.success(`You have saved "${exercise.name}"`)
         
     }
 

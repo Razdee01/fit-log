@@ -2,6 +2,7 @@
 import { exerciseContext } from "@/context/ExerciseContext";
 import { IExercise } from "@/types/Type";
 import React, { useContext} from "react";
+import { toast } from "react-toastify";
 interface IaddProps {
   exercise: IExercise;
 
@@ -14,7 +15,7 @@ const AddButton = ({ exercise }: IaddProps) => {
     
   const handleAdd = () => {
       setAdd([...add,exercise])
-    
+    toast.success(`You have added "${exercise.name}" to your today's plan`)
      
   };
   
