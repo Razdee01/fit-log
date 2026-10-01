@@ -11,8 +11,8 @@ const SaveButton = ({ exercise }: IsaveProps) => {
   const {save,setSave}=useContext(exerciseContext)
     const handleSave=()=>{
       setSave([...save,exercise])
-        console.log("save btton clck");
-         toast.success(`You have saved "${exercise.name}"`)
+       
+        toast.success(`You have saved "${exercise.name}"`)
         
     }
 
