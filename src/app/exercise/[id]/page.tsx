@@ -1,3 +1,5 @@
+import AddButton from "@/components/AddButton";
+import SaveButton from "@/components/SaveButton";
 import { IExercise } from "@/types/Type";
 import Image from "next/image";
 import React from "react";
@@ -167,13 +169,9 @@ const ExerciseDetails = async ({ params }: IdetailsProps) => {
 
             {/* Buttons */}
             <div className="flex flex-wrap gap-3 mt-6">
-              <button className="bg-[#b6ff00] text-black text-xs font-bold px-5 py-3 rounded-lg">
-                Add to today&apos;s plan
-              </button>
+             <AddButton exercise={exercise}></AddButton>
 
-              <button className="border border-gray-700 text-gray-300 text-xs px-5 py-3 rounded-lg">
-                Save for later
-              </button>
+              <SaveButton exercise={exercise}></SaveButton>
             </div>
 
           </div>
