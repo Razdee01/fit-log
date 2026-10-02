@@ -1,12 +1,22 @@
 "use client";
 
+import { exerciseContext } from "@/context/ExerciseContext";
 import { IExercise } from "@/types/Type";
+import Image from "next/image";
+import Link from "next/link";
+import { useContext } from "react";
+import { RxCross1 } from "react-icons/rx";
 
 interface IsaveProps {
   savedBook: IExercise[];
 }
 
 const SaveList = ({ savedBook }: IsaveProps) => {
+  const {setSave}=useContext(exerciseContext)
+  const handleRemove=(id)=>{
+    const remainings=savedBook.filter((book)=>id!==book.id)
+    setSave(remainings)
+  }
   return (
     <div className="min-h-[170px] rounded-xl border border-gray-800 bg-[#0d0f12] p-5">
       {savedBook.length > 0 ? (
@@ -16,17 +26,36 @@ const SaveList = ({ savedBook }: IsaveProps) => {
               key={exercise.id}
               className="flex items-center justify-between rounded-lg border border-gray-800 bg-[#15171c] px-4 py-3"
             >
-              <div>
-                <h3 className="text-sm font-semibold">{exercise.name}</h3>
+              <div className="flex gap-3 items-center">
+                <Image
+                  className="rounded-3xl"
+                  src={exercise.image}
+                  width={80}
+                  height={80}
+                  alt="image"
+                />
 
-                <p className="mt-1 text-xs text-gray-500">
-                  {exercise.duration} min • {exercise.caloriesBurned} calories
-                </p>
+                <div>
+                  <h3 className="text-2xl font-semibold">{exercise.name}</h3>
+                  <h2 className="text-sm font-normal">{exercise.equipment}</h2>
+
+                  <p className="mt-1 text-sm text-gray-500">
+                    {exercise.duration} min • {exercise.caloriesBurned} calories
+                    • {exercise.rating}
+                  </p>
+                </div>
               </div>
 
-              <button className="rounded-md border border-gray-700 px-3 py-2 text-xs text-gray-400 hover:text-white">
-                Remove
+              <div className="flex items-center gap-2">
+                <Link href={`exercise/${exercise.id}`} className="rounded-full border border-white px-3 py-2 text-xs font-semibold  ">
+                View Details
+              </Link>
+               
+              
+                <button onClick={()=>handleRemove(exercise.id)} className="rounded-md  px-3 py-2 text-xs ">
+                <RxCross1 />
               </button>
+              </div>
             </div>
           ))}
         </div>
