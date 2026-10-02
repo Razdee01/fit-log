@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import logo from "@/assets/logo.png";
 
+import PlanSave from "./PlanSave";
+
 const NavBar = () => {
   const links = (
     <>
@@ -9,6 +11,7 @@ const NavBar = () => {
       <Link href="/My-plan">My Plans</Link>
     </>
   );
+  
   return (
     <div className="container mx-auto ">
       <div className="navbar bg-base-100 shadow-sm ">
@@ -47,21 +50,7 @@ const NavBar = () => {
         <div className="navbar-center hidden lg:flex ">
           <ul className="menu menu-horizontal px-1 gap-3">{links}</ul>
         </div>
-        <div className="navbar-end gap-5">
-          <Link href="/My-plan" >
-            <div className="flex items-center gap-2">
-              <div>Plan</div>
-              <div className="rounded-full border border-white px-2">0</div>
-            </div>
-          </Link>
-
-             <Link href="/My-plan" >
-            <div className="flex items-center gap-2">
-              <div>Saved</div>
-              <div className="rounded-full border border-white px-2">0</div>
-            </div>
-          </Link>
-        </div>
+        <PlanSave></PlanSave>
       </div>
     </div>
   );
