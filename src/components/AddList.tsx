@@ -5,7 +5,9 @@ import { IExercise } from "@/types/Type";
 import Image from "next/image";
 import Link from "next/link";
 import { useContext, useState } from "react";
+import { FaCheck } from "react-icons/fa";
 import { RxCross1 } from "react-icons/rx";
+import { toast } from "react-toastify";
 
 interface IaddProps {
   addedBook: IExercise[];
@@ -17,11 +19,20 @@ const AddList = ({ addedBook }: IaddProps) => {
 
   const handleMark = () => {
     setMark(true);
+    toast.success("Workout marked as completed!");
   };
 
   const handleRemove = (id: number) => {
-    const remainings = addedBook.filter((book) => id !== book.id);
+    const removedItem = addedBook.find((book) => book.id === id);
+
+    const remainings = addedBook.filter((book) => book.id !== id);
     setAdd(remainings);
+
+    if (removedItem) {
+      toast.error(`Removed "${removedItem.name}" from your plan`);
+    } else {
+      toast.error("Removed exercise from your plan");
+    }
   };
 
   return (
@@ -86,7 +97,14 @@ const AddList = ({ addedBook }: IaddProps) => {
                   onClick={handleMark}
                   className="flex-1 rounded-full border border-[#c8ff00]/30 bg-[#c8ff00]/10 px-3 py-2 text-center text-xs font-semibold text-[#c8ff00] transition-colors hover:bg-[#c8ff00] hover:text-black disabled:opacity-50 lg:flex-none whitespace-nowrap"
                 >
-                  {mark ? "Done" : "Mark as done"}
+                  {mark ? (
+                    <div className="flex items-center gap-2">
+                      <span><FaCheck className="h-3 w-3" /></span>
+                      <span>Workout Done</span>
+                    </div>
+                  ) : (
+                    "Mark as done"
+                  )}
                 </button>
 
                 {/* Desktop-only remove button */}
