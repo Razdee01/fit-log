@@ -9,12 +9,20 @@ interface IsaveProps {
 
 const SaveButton = ({ exercise }: IsaveProps) => {
   const {save,setSave}=useContext(exerciseContext)
-    const handleSave=()=>{
-      setSave([...save,exercise])
-       
-        toast.success(`You have saved "${exercise.name}"`)
-        
+  const handleSave = () => {
+
+    const isAlreadyAdded = save.some((item) => item.id === exercise.id);
+
+   
+    if (isAlreadyAdded) {
+      toast.info(`"${exercise.name}" is already in your today's plan!`);
+      return;
     }
+
+   
+    setSave([...save, exercise]);
+    toast.success(`You have added "${exercise.name}" to your today's plan`);
+  };
 
   return (
     <div>
